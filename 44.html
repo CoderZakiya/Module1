@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <h3>lotus</h3>
+                <img src="xuan-nguyen-v6V-hfxjboI-unsplash.jpg" alt="Rose" class="carousel-img">
+            </div>
+            <div class="item">
+                <h3>🌼 Sunflower</h3>
+                <img src="mike-marrah-vKNjdRBqep0-unsplash.jpg" alt="Sunflower" class="carousel-img">
+            </div>
+            <div class="item">
+                <h3>🌺 Rose</h3>
+                <img src="nikita-tikhomirov-dv7cSiHurKM-unsplash.jpg" alt="Tulip" class="carousel-img">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- Custom CSS -->
+    <style>
+        .carousel-img {
+            width: 100%;
+            max-height: 600px;
+            /* Bigger landscape size */
+            object-fit: cover;
+            /* Keeps landscape orientation */
+            margin: 0 auto;
+        }
+
+        .carousel-inner h3 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+    </style>
+
+</body>
+
+</html>
