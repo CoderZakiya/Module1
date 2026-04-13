@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Multiplication Functions Demo</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .card {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 65%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #60a0ca;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>JavaScript Multiplication Functions Demo</h1>
+
+
+    <div class="card">
+        <h3>1. Default Parameter Function</h3>
+        <p id="demo"></p>
+        <button onclick="Multiply(3)">Click to See Output</button>
+    </div>
+
+    <div class="card">
+        <h3>2. Normal Function</h3>
+        <p id="normal"></p>
+        <button onclick="myFunction()">Click to See Output</button>
+    </div>
+
+
+
+
+    <div class="card">
+        <h3>4. Function Expression</h3>
+        <p id="expression"></p>
+    </div>
+
+    <script>
+
+        function Multiply(a, b = 3) {
+            var result = a * b;
+
+            document.getElementById("demo").innerHTML =
+                "In this function, a = " + a +
+                " and b is not given, so default b = 3. <br>" +
+                "So, multiplication: " + a + " × 3 = " + result;
+        }
+
+
+        var c = 98;
+
+        function myFunction() {
+            var a = 4;
+            var b = 6;
+            var result = a * b * c;
+
+            document.getElementById("normal").innerHTML =
+                "Here, a = 4, b = 6 and c = " + c + ". <br>" +
+                "So, multiplication: 4 × 6 × " + c + " = " + result;
+        }
+
+
+
+        var multiplyFunc = function (a, b) {
+            return a * b;
+        };
+
+        var res = multiplyFunc(5, 8);
+
+        document.getElementById("expression").innerHTML =
+            "In function expression, a = 5 and b = 8. <br>" +
+            "So, multiplication: 5 × 8 = " + res;
+
+    </script>
+
+</body>
+
+</html>
