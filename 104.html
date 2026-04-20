@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sum of numbers.</title>
+    <style>
+        body {
+            background-color: rgb(221, 245, 221);
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .box {
+            background-color: rgb(44, 80, 80);
+            width: 380px;
+            margin: 40px auto;
+            padding: 18px;
+            border-radius: 9px;
+            box-shadow: 0 0 10px gray;
+            color: whitesmoke;
+        }
+
+        h1 {
+            color: rgb(136, 30, 30);
+        }
+
+        p {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Math & Trigonometry Website</h1>
+    <div class="box">
+        <p id="ab"></p>
+        <p id="bc"></p>
+        <p id="de"></p>
+        <p id="fg"></p>
+    </div>
+    <script>
+
+
+        var coder = {
+            firstName: "Welcome to my website"
+        };
+
+        document.getElementById("ab").innerHTML = coder.firstName + "<br><br>";
+
+
+
+        function sumNumbers() {
+
+            var i;
+            var sum = 0;
+
+            for (i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+
+            return sum;
+        }
+
+        document.getElementById("bc").innerHTML =
+            "∑Sum of numbers = " + sumNumbers(123, 254, 476334, 908, 765, 307, 8676765) + "<br><br>";
+
+
+
+
+        var a = Math.sin(30 * Math.PI / 180);
+        var b = Math.sin(60 * Math.PI / 180);
+        var c = Math.sin(90 * Math.PI / 180);
+
+        var d = Math.cos(90 * Math.PI / 180);
+        var e = Math.cos(30 * Math.PI / 180);
+        var f = Math.cos(60 * Math.PI / 180);
+
+        var g = Math.tan(30 * Math.PI / 180);
+        var h = Math.tan(45 * Math.PI / 180);
+        var i = Math.tan(60 * Math.PI / 180);
+
+
+
+
+        document.getElementById("de").innerHTML =
+            "STEP VALUES:<br><br>" +
+
+            "a = sin30° = " + a.toFixed(3) + "<br>" +
+            "b = sin60° = " + b.toFixed(3) + "<br>" +
+            "c = sin90° = " + c.toFixed(3) + "<br>" +
+            "d = cos90° = " + d.toFixed(3) + "<br>" +
+            "e = cos30° = " + e.toFixed(3) + "<br>" +
+            "f = cos60° = " + f.toFixed(3) + "<br>" +
+            "g = tan30° = " + g.toFixed(3) + "<br>" +
+            "h = tan45° = " + h.toFixed(3) + "<br>" +
+            "i = tan60° = " + i.toFixed(3) + "<br><br>";
+
+
+
+
+        var total = a + b + c + d + e + f + g + h + i;
+
+        document.getElementById("fg").innerHTML =
+            "Trigonometry SUM PROCESS:<br>" +
+            "= a + b + c + d + e + f + g + h + i <br>" +
+            "= " + total.toFixed(3) + "(ans.)";
+
+    </script>
+</body>
+
+</html>
