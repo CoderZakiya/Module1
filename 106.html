@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Projects(1)</title>
+    <style>
+        body {
+            background-color: rgb(221, 245, 221);
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .box {
+            background-color: rgb(44, 80, 80);
+            width: 380px;
+            margin: 40px auto;
+            padding: 18px;
+            border-radius: 9px;
+            box-shadow: 0 0 10px gray;
+            color: whitesmoke;
+        }
+
+        h1 {
+            color: rgb(136, 30, 30);
+        }
+
+        p {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Javascript array methods</h1>
+    <div class="box">
+        <p id="first"></p>
+        <p id="second"></p>
+        <p id="third"></p>
+    </div>
+    <script>
+        var fruits = ["Banana", "Pinapple", "Mango", "jackfruit", "Orange"];
+        document.getElementById("first").innerHTML = fruits.join("$");
+        document.getElementById("second").innerHTML = fruits; fruits.pop();
+        document.getElementById("third").innerHTML = fruits;
+
+    </script>
+</body>
+
+</html>
