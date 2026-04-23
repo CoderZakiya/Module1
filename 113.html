@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Projects(1)</title>
+    <style>
+        body {
+            background-color: rgb(247, 215, 247);
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .box {
+            background-color: rgb(236, 159, 185);
+            width: 780px;
+            height: 250px;
+            margin: 40px auto;
+            padding: 18px;
+            border-radius: 9px;
+            box-shadow: 0 0 10px gray;
+            color: whitesmoke;
+        }
+
+        h1 {
+            color: rgb(136, 30, 30);
+        }
+
+        p {
+            font-size: 15px;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>REAL TIME VALIDATION USING JS</h1>
+    <div class="box">
+        <form id="loginForm">
+            <div class="row">
+                <label>Email:</label>
+                <input type="text" id="email" placeholder="myname@gmail.com" </div>
+                <div class="row">
+                    <label>Password:</label>
+                    <input type="password" id="password" placeholder="........" </div>
+                    <div class="row">
+                        <label>Age:</label>
+                        <input type="number" id="age" </div>
+                        <button type="submit">login</button>
+        </form>
+
+    </div>
+    <p id="message"></p>
+    <script>
+        function validate(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("password").value;
+            const age = document.getElementById("age").value;
+            const msgBox = document.getElementById("message");
+            let message = "";
+            if (email === "") {
+                message = "Please enter an email.";
+                msgBox.style.color = 'red';
+            }
+            else if (pass === "") {
+                message = "Please enter an passward.";
+                msgBox.style.color = 'red';
+            }
+            else if (age === "") {
+                message = "Please enter your age.";
+                msgBox.style.color = 'red';
+            }
+            else {
+                message = "login Successful";
+                msgBox.style.color = 'blue';
+
+            }
+            msgBox.innerHTML = message;
+        }
+        document.getElementById("loginform").onsubmit = validate;
+        document.getElementById("email").oninput = () => validate({
+            preventDefault: () => { }
+        });
+        document.getElementById("password").oninput = () => validate({
+            preventDefault: () => { }
+        });
+        document.getElementById("age").oninput = () => validate({
+            preventDefault: () => { }
+        });
+
+    </script>
+</body>
+
+</html>
