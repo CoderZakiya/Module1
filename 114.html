@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Projects(1)</title>
+    <style>
+        body {
+            background-color: rgb(247, 215, 247);
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .box {
+            background-color: rgb(236, 159, 185);
+            width: 780px;
+            height: 300px;
+            margin: 40px auto;
+            padding: 18px;
+            border-radius: 9px;
+            box-shadow: 0 0 10px gray;
+            color: whitesmoke;
+        }
+
+        h1 {
+            color: rgb(136, 30, 30);
+        }
+
+        p {
+            font-size: 15px;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript object data structure and array methods.</h1>
+    <div class="box">
+
+        <p id="coding"></p>
+        <p id="fourth"></p>
+        <p id="hobby"></p>
+    </div>
+
+    <script>
+        var code = ["Zakiya Sultana", "10", "Bangladesh"];
+
+        document.getElementById("coding").innerHTML =
+            "Student's name: " + code[0] + "<br>" +
+            "Grade: " + code[1] + "<br>" +
+            "Birthplace: " + code[2];
+
+        var Hobbies = ["Coding", "Crocheting", "Gardening", "Watching movies", "Cooking"];
+
+
+        function myHobbies(arr) {
+            let lastHobby = arr.pop();
+            let remaining = arr.join(" | ");
+
+            return "My hobbies are:<br>" +
+                remaining + "<br>"
+
+        }
+
+        document.getElementById("hobby").innerHTML = myHobbies(Hobbies);
+
+        function add(a, b) {
+            return a + b;
+        }
+
+        function average(a, b) {
+            return add(a, b) / 2;
+        }
+
+        let result = average(10, 20);
+
+        document.getElementById("fourth").innerHTML = "Age: " + result;
+    </script>
+
+</body>
+
+</html>
