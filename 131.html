@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="demo">Job Application Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #d7ccc8, #a1887f);
+        }
+
+        nav {
+            background-color: #4e342e;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            display: none;
+            padding: 30px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .box {
+            background: #6d4c41;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            color: white;
+            box-shadow: 0 0 10px black;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px;
+            background: #3e2723;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2e1b17;
+        }
+
+
+
+
+
+
+
+        .controls button {
+            margin: 10px;
+            padding: 8px 12px;
+            border: none;
+            background: #3e2723;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" onclick="showSection('job')">Job Details</a>
+        <a href="#" onclick="showSection('apply')">Job Application</a>
+        <a href="#" onclick="showSection('contact')">More Info</a>
+    </nav>
+
+
+
+    </div>
+    <!-- JOB -->
+    <div id="job" class="section active">
+        <h2>Frontend Developer Job</h2>
+        <p><b>Company:</b> TechNova Solutions</p>
+        <p><b>Location:</b> Remote / Dhaka</p>
+        <p><b>Salary:</b> $800 - $1200/month</p>
+
+        <p><b>Requirements:</b></p>
+        <ul>
+            <li>Strong understanding of HTML5, CSS3, and JavaScript (ES6+)</li>
+            <li>Familiarity with responsive web design principles</li>
+            <li>Basic knowledge of React.js or any frontend framework</li>
+            <li>Problem-solving and debugging skills</li>
+            <li>Good communication and teamwork ability</li>
+        </ul>
+
+        <p><b>Responsibilities:</b></p>
+        <ul>
+            <li>Build responsive and modern user interfaces</li>
+            <li>Fix bugs and improve UI performance</li>
+        </ul>
+    </div>
+
+    <!-- APPLY -->
+    <div id="apply" class="section">
+        <div class="box">
+            <h3>Login to Apply</h3>
+            <form id="loginForm">
+                <input type="text" id="email" placeholder="Email"><br>
+                <input type="password" id="password" placeholder="Password"><br>
+                <input type="number" id="age" placeholder="Age"><br>
+                <button type="submit">Login</button>
+            </form>
+            <p id="message"></p>
+            <p id="code1"></p>
+            <p id="code2"></p>
+            <button onclick="myFunction()">Show Greeting</button>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="section">
+        <h2>Contact Information</h2>
+        <p>Email: hr@technova.com</p>
+        <p>Phone: +880 1234 567890</p>
+        <p>Address: Dhaka, Bangladesh</p>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        var text = document.getElementById("demo").innerHTML;
+        alert("This is a " + text + " page");
+
+        function myFunction() {
+            document.getElementById("code1").innerHTML =
+                document.getElementById("demo").firstChild.nodeValue;
+
+            document.getElementById("code2").innerHTML =
+                document.getElementById("demo").childNodes[0].nodeValue;
+        }
+
+        function validate(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const age = document.getElementById("age").value;
+            const msgBox = document.getElementById("message");
+
+            let message = "";
+
+            if (email === "") {
+                message = "Please enter email";
+                msgBox.style.color = "red";
+            } else if (password === "") {
+                message = "Please enter password";
+                msgBox.style.color = "red";
+            } else if (age === "") {
+                message = "Please enter age";
+                msgBox.style.color = "red";
+            } else {
+                message = "Login Successful";
+                msgBox.style.color = "blue";
+            }
+
+            msgBox.textContent = message;
+        }
+
+        document.getElementById("loginForm").onsubmit = validate;
+    </script>
+
+</body>
+
+</html>
