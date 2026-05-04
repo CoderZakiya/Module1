@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7d7f7, #d7f0ff);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #8b1e1e;
+            margin-top: 30px;
+        }
+
+
+
+        button {
+            padding: 10px 20px;
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #e63946;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Arrays in JavaScript</h1>
+    <p id="result"></p>
+    <button onclick="ascending()">Ascending Order</button>
+    <button onclick="descending()">Descending Order</button>
+    <script>
+        var numbers = [2, 6, 5, 4, 90, 345];
+        document.getElementById("result").innerHTML = numbers;
+        function ascending() {
+            numbers.sort(function (a, b) {
+                return a - b;
+            });
+            document.getElementById("result").innerHTML = numbers;
+        }
+        function descending() {
+            numbers.sort(function (a, b) {
+                return b - a;
+            });
+            document.getElementById("result").innerHTML = numbers;
+        }
+    </script>
+</body>
+
+</html>
