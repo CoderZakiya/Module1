@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7d7f7, #d7f0ff);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #8b1e1e;
+            margin-top: 30px;
+        }
+
+
+
+        button {
+            padding: 10px 20px;
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #e63946;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Arrays in JavaScript</h1>
+    <p id="result"></p>
+    <button onclick="myFunction()">Click me!</button>
+    <script>
+        function myFunction() {
+            var x = 23;
+            var y = 45;
+            var a = " Sum of x and y: " + eval("x+y") + "<br>";
+            var b = " Sum of x and 5667: " + eval("x+5667") + "<br>";
+            var c = " Sum of y and y: " + eval("y+y") + "<br>";
+            var res = a + b + c;
+            document.getElementById("result").innerHTML = res;
+        }
+    </script>
+</body>
+
+</html>
