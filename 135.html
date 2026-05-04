@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Random Number Generator</title>
+    <style>
+        :root {
+            --bg-deep: #0a0c10;
+            --bg-card: #111318;
+            --bg-surface: #161b24;
+            --accent-gold: #c9a84c;
+            --accent-gold-light: #e8c97a;
+            --accent-blue: #4a90d9;
+            --text-primary: #f0ece4;
+            --text-secondary: #8a8fa3;
+            --text-muted: #4a4e5c;
+            --border: rgba(201, 168, 76, 0.15);
+            --border-hover: rgba(201, 168, 76, 0.4);
+            --glow: rgba(201, 168, 76, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(201, 168, 76, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(ellipse, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 80%;
+            margin: 50px auto;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #00c6ff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0072ff;
+        }
+
+        #output {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            color: #3c5d86;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Random Number Generator</h1>
+    <div class="container">
+        <div class="box">
+            <h2>Random Numbers(from 0-10)</h2>
+            <button onclick="generateNumbers1()">Click to Generate</button>
+            <p id="output1"></p>
+        </div>
+        <div class="box">
+            <h2>Random Numbers(from 0-20)</h2>
+            <button onclick="generateNumbers2()">Click to Generate</button>
+            <p id="output2"></p>
+        </div>
+        <div class="box">
+            <h2>Random Numbers(from 0-30)</h2>
+            <button onclick="generateNumbers3()">Click to Generate</button>
+            <p id="output3"></p>
+        </div>
+        <div class="box">
+            <h2>Random Numbers(from 0-40)</h2>
+            <button onclick="generateNumbers4()">Click to Generate</button>
+            <p id="output4"></p>
+        </div>
+    </div>
+    <script>
+        function generateNumbers1() {
+            let count = 0; let result = "";
+            while (count < 10) {
+                let num = Math.floor(Math.random() * 11);
+                result += num + " "; count++;
+            }
+            document.getElementById("output1").innerText = result;
+        }
+        function generateNumbers2() {
+            let count = 0; let result = "";
+            while (count < 20) {
+                let num = Math.floor(Math.random() * 21);
+                result += num + " "; count++;
+            }
+            document.getElementById("output2").innerText = result;
+        }
+        function generateNumbers3() {
+            let count = 0; let result = "";
+            while (count < 30) {
+                let num = Math.floor(Math.random() * 31);
+                result += num + " "; count++;
+            }
+            document.getElementById("output3").innerText = result;
+        }
+        function generateNumbers4() {
+            let count = 0; let result = "";
+            while (count < 40) {
+                let num = Math.floor(Math.random() * 41); result += num + " "; count++;
+            }
+            document.getElementById("output4").innerText = result;
+        }
+    </script>
+</body>
+
+</html>
