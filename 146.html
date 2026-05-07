@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Array Mapping & Sorting</title>
+
+    <style>
+        :root {
+            --bg-card: rgba(255, 255, 255, 0.08);
+            --accent-gold: #e8c97a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+
+            color: white;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow-x: hidden;
+            padding: 30px;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .box {
+            width: 750px;
+            padding: 30px;
+            border-radius: 20px;
+
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 114, 255, 0.2);
+
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        h2 {
+            color: #7fb3ff;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px;
+        }
+
+        .result {
+            color: #e8e8e8;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 18px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 8px;
+            background: #0072ff;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #0057cc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>JavaScript Array Mapping & Sorting</h1>
+        <p>Original Array:</p>
+        <p class="result" id="original"></p>
+
+        <div class="section">
+
+            <h2>Multipled by 10</h2>
+
+            <p class="result" id="multiply"></p>
+
+            <button onclick="multiplyAsc()">
+                Ascending
+            </button>
+
+            <button onclick="multiplyDesc()">
+                Descending
+            </button>
+
+            <p class="result" id="multiplySort"></p>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Divided by 10</h2>
+
+            <p class="result" id="divide"></p>
+
+            <button onclick="divideAsc()">
+                Ascending
+            </button>
+
+            <button onclick="divideDesc()">
+                Descending
+            </button>
+
+            <p class="result" id="divideSort"></p>
+
+        </div>
+
+
+        <div class="section">
+
+            <h2>Added 10</h2>
+
+            <p class="result" id="add"></p>
+
+            <button onclick="addAsc()">
+                Ascending
+            </button>
+
+            <button onclick="addDesc()">
+                Descending
+            </button>
+
+            <p class="result" id="addSort"></p>
+
+        </div>
+
+
+        <div class="section">
+
+            <h2>Subtracted by 10</h2>
+
+            <p class="result" id="subtract"></p>
+
+            <button onclick="subtractAsc()">
+                Ascending
+            </button>
+
+            <button onclick="subtractDesc()">
+                Descending
+            </button>
+
+            <p class="result" id="subtractSort"></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+
+        var numbers = [2, 6, 5, 4, 90, 345];
+        var numbers = [2, 6, 5, 4, 90, 345];
+
+
+        document.getElementById("original").innerHTML =
+            numbers.join(", ");
+
+        var multiplyArray = numbers.map(function (num) {
+            return num * 10;
+        });
+
+        document.getElementById("multiply").innerHTML =
+            multiplyArray.join(", ");
+
+
+        var divideArray = numbers.map(function (num) {
+            return num / 10;
+        });
+
+        document.getElementById("divide").innerHTML =
+            divideArray.join(", ");
+
+
+        var addArray = numbers.map(function (num) {
+            return num + 10;
+        });
+
+        document.getElementById("add").innerHTML =
+            addArray.join(", ");
+
+
+        var subtractArray = numbers.map(function (num) {
+            return num - 10;
+        });
+
+        document.getElementById("subtract").innerHTML =
+            subtractArray.join(", ");
+
+
+        function multiplyAsc() {
+            var asc = [...multiplyArray].sort(function (a, b) {
+                return a - b;
+            });
+
+            document.getElementById("multiplySort").innerHTML =
+                asc.join(", ");
+        }
+
+        function multiplyDesc() {
+            var desc = [...multiplyArray].sort(function (a, b) {
+                return b - a;
+            });
+
+            document.getElementById("multiplySort").innerHTML =
+                desc.join(", ");
+        }
+
+
+        function divideAsc() {
+            var asc = [...divideArray].sort(function (a, b) {
+                return a - b;
+            });
+
+            document.getElementById("divideSort").innerHTML =
+                asc.join(", ");
+        }
+
+        function divideDesc() {
+            var desc = [...divideArray].sort(function (a, b) {
+                return b - a;
+            });
+
+            document.getElementById("divideSort").innerHTML =
+                desc.join(", ");
+        }
+
+
+        function addAsc() {
+            var asc = [...addArray].sort(function (a, b) {
+                return a - b;
+            });
+
+            document.getElementById("addSort").innerHTML =
+                asc.join(", ");
+        }
+
+        function addDesc() {
+            var desc = [...addArray].sort(function (a, b) {
+                return b - a;
+            });
+
+            document.getElementById("addSort").innerHTML =
+                desc.join(", ");
+        }
+
+
+        function subtractAsc() {
+            var asc = [...subtractArray].sort(function (a, b) {
+                return a - b;
+            });
+
+            document.getElementById("subtractSort").innerHTML =
+                asc.join(", ");
+        }
+
+        function subtractDesc() {
+            var desc = [...subtractArray].sort(function (a, b) {
+                return b - a;
+            });
+
+            document.getElementById("subtractSort").innerHTML =
+                desc.join(", ");
+        }
+
+    </script>
+
+</body>
+
+</html>
