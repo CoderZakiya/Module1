@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CarZone OOP Showcase</title>
+
+    <style>
+        :root {
+            --bg-deep: #0a0c10;
+            --bg-card: #111318;
+            --accent-gold: #c9a84c;
+            --text-primary: #f0ece4;
+            --text-secondary: #8a8fa3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+        }
+
+
+        nav {
+            background: #111318;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h2 {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+
+        nav ul li:hover {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+
+        .hero {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 40%;
+            left: 10%;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            color: white;
+        }
+
+        .hero-text p {
+            color: #ddd;
+            margin-top: 10px;
+        }
+
+
+        .container {
+            width: 90%;
+            margin: 50px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+            font-size: 35px;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .details {
+            padding: 20px;
+        }
+
+        .details h2 {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .details p {
+            margin: 6px 0;
+            color: var(--text-secondary);
+        }
+
+        .price {
+            color: #00c6ff;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .about,
+        .contact {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .about p,
+        .contact p {
+            margin-top: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav>
+        <h2>CarZone</h2>
+
+        <ul>
+            <li onclick="scrollToSection('home')">🏠 Home</li>
+            <li onclick="scrollToSection('cars')">🚗 Cars</li>
+            <li onclick="scrollToSection('about')">ℹ About</li>
+            <li onclick="scrollToSection('contact')">📞 Contact</li>
+        </ul>
+    </nav>
+
+
+    <section id="home" class="hero">
+
+        <img id="slider" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200">
+
+        <div class="hero-text">
+            <h1>Luxury Car Collection</h1>
+            <p>Explore premium cars with modern technology</p>
+        </div>
+
+    </section>
+
+
+    <div class="container" id="cars">
+
+        <h1 class="section-title">Our Cars</h1>
+
+        <div class="car-grid" id="carContainer"></div>
+
+    </div>
+
+
+    <div class="container about" id="about">
+
+        <h1 class="section-title">About Us</h1>
+
+        <p>
+            CarZone is a premium car showcase website created using
+            HTML, CSS and JavaScript concepts.
+            This project demonstrates:
+            Classes, Static Methods, Inheritance and Object Methods.
+        </p>
+
+    </div>
+
+
+    <div class="container contact" id="contact">
+
+        <h1 class="section-title">Contact</h1>
+
+        <p>Email: support@carzone.com</p>
+        <p>Phone: +880123456789</p>
+
+    </div>
+
+    <script>
+
+
+
+        class Car {
+
+            constructor(brand, model, engine, speed, fuel, price, image) {
+
+                this.brand = brand;
+                this.model = model;
+                this.engine = engine;
+                this.speed = speed;
+                this.fuel = fuel;
+                this.price = price;
+                this.image = image;
+            }
+
+
+
+            showDetails() {
+
+
+                return "<h2>" + this.brand + " " + this.model + "</h2>" +
+                    "<p><b>Engine:</b> " + this.engine + "</p>" +
+                    "<p><b>Top Speed:</b> " + this.speed + "</p>" + "<p><b>Fuel:</b>" + this.fuel + "</p>" + "<p><b>Price:</b>" + this.price + "</p>";
+
+            }
+
+
+
+            static companyInfo() {
+
+                return "All vehicles are certified by CarZone Motors";
+            }
+
+        }
+
+
+        class ElectricCar extends Car {
+
+            constructor(brand, model, engine, speed, fuel, battery, price, image) {
+
+                super(brand, model, engine, speed, fuel, price, image);
+
+                this.battery = battery;
+            }
+
+
+            showDetails() {
+
+                return "<h2>" + this.brand + " " + this.model + " ⚡</h2>" +
+                    "<p><b>Engine:</b> " + this.engine + "</p>" +
+                    "<p><b>Top Speed:</b> " + this.speed + "</p>" +
+                    "<p><b>Fuel:</b> " + this.fuel + "</p>" +
+                    "<p><b>Battery:</b> " + this.battery + "</p>" +
+                    "<div class='price'>" + this.price + "</div>";
+            }
+
+        }
+
+
+        let cars = [
+
+            new Car(
+                "BMW",
+                "M4",
+                "3000cc Turbo",
+                "250 km/h",
+                "Petrol",
+                "$50,000",
+                "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800"
+            ),
+
+            new Car(
+                "Audi",
+                "R8",
+                "5200cc V10",
+                "330 km/h",
+                "Petrol",
+                "$120,000",
+                "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800"
+            ),
+
+            new ElectricCar(
+                "Tesla",
+                "Model S",
+                "Electric",
+                "322 km/h",
+                "Electric",
+                "100 kWh",
+                "$90,000",
+                "https://images.unsplash.com/photo-1549924231-f129b911e442?w=800"
+            ),
+
+            new Car(
+                "Mercedes",
+                "AMG",
+                "4000cc Twin Turbo",
+                "280 km/h",
+                "Petrol",
+                "$95,000",
+                "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"
+            ),
+
+            new Car(
+                "Ferrari",
+                "488 GTB",
+                "3900cc V8",
+                "340 km/h",
+                "Petrol",
+                "$180,000",
+                "https://images.unsplash.com/photo-1493238792000-8113da705763?w=800"
+            ),
+
+            new Car(
+                "Lamborghini",
+                "Huracan",
+                "5200cc V10",
+                "350 km/h",
+                "Petrol",
+                "$220,000",
+                "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800"
+            )
+
+        ];
+
+
+        let container = document.getElementById("carContainer");
+
+        container.innerHTML += `
+            <p style="
+                grid-column: 1/-1;
+                text-align:center;
+                color:gold;
+                font-size:20px;
+                margin-bottom:20px;
+            ">
+                ${Car.companyInfo()}
+            </p>
+        `;
+
+        cars.forEach(car => {
+
+            container.innerHTML += `
+
+                <div class="card">
+
+                    <img src="${car.image}">
+
+                    <div class="details">
+
+                        ${car.showDetails()}
+
+                        <button>Buy Now</button>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+
+
+        function scrollToSection(id) {
+
+            document.getElementById(id).scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+
+
+        let sliderImages = [
+
+            "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200",
+
+            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200",
+
+            "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1200"
+
+        ];
+
+        let current = 0;
+
+        setInterval(() => {
+
+            current++;
+
+            if (current >= sliderImages.length) {
+                current = 0;
+            }
+
+            document.getElementById("slider").src = sliderImages[current];
+
+        }, 3000);
+
+    </script>
+
+</body>
+
+</html>
