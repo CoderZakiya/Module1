@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            text-align: center;
+            background-color: azure;
+        }
+
+        .box {
+            color: rgb(223, 187, 134);
+        }
+
+        h1 {
+            text-align: center;
+            color: blueviolet
+        }
+
+        p {
+            text-align: center;
+            color: rgb(17, 2, 2);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Javascript error handling.</h1>
+    <div class="box">
+        <p>7675645645+87534566345678=</p>
+        <p id="demo1"></p>
+        <p>7675645645-87534566345678=</p>
+        <p id="demo2"></p>
+        <p>7675645645*87534566345678=</p>
+        <p id="demo3"></p>
+        <p>7675645645/87534566345678=</p>
+        <p id="demo4"></p>
+    </div>
+    <script>
+        const add = (a, b) => a + b;
+        const sub = (a, b) => a - b;
+        const multiply = (a, b) => a * b;
+        const divition = (a, b) => a / b;
+        document.getElementById("demo1").innerHTML = add(7675645645, 87534566345678);
+        document.getElementById("demo2").innerHTML = sub(7675645645, 87534566345678);
+        document.getElementById("demo3").innerHTML = multiply(7675645645, 87534566345678);
+        document.getElementById("demo4").innerHTML = divition(7675645645, 87534566345678);
+
+    </script>
+</body>
+
+</html>
