@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e0e0ff;
+            font-family: monospace;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: blueviolet;
+            font-family: sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px blueviolet;
+        }
+
+        .box {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .error-card {
+            background: rgba(255, 60, 60, 0.08);
+            border: 1px solid rgba(255, 80, 80, 0.4);
+            border-left: 4px solid #ff4444;
+            border-radius: 6px;
+            padding: 14px 18px;
+        }
+
+        .success-card {
+            background: rgba(60, 255, 120, 0.08);
+            border: 1px solid rgba(60, 255, 120, 0.4);
+            border-left: 4px solid #3dff78;
+            border-radius: 6px;
+            padding: 14px 18px;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            opacity: 0.6;
+        }
+
+        .error-card .label {
+            color: #ff8888;
+        }
+
+        .success-card .label {
+            color: #3dff78;
+        }
+
+        p {
+            color: aqua;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .success-card p {
+            color: #3dff78;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Javascript Error Handling</h1>
+
+    <div class="box">
+
+
+        <div class="error-card">
+            <div class="label">Error 1 — Undefined Variable</div>
+            <p id="demo"></p>
+        </div>
+
+
+        <div class="error-card">
+            <div class="label">Error 2 — Undefined Variable</div>
+            <p id="demo1"></p>
+        </div>
+
+
+        <div class="success-card">
+            <div class="label">Result — z + v - s</div>
+            <p id="demo2"></p>
+        </div>
+
+
+        <div class="success-card">
+            <div class="label">Generated Numbers</div>
+            <p id="demo3"></p>
+        </div>
+
+
+        <div class="error-card">
+            <div class="label">Error 3 — Null Element</div>
+            <p id="demo45"></p>
+        </div>
+
+
+        <div class="error-card">
+            <div class="label">Error 4 — TypeError</div>
+            <p id="demo6"></p>
+        </div>
+
+    </div>
+
+    <script>
+
+
+        try {
+            v = abc;
+        } catch (err) {
+            document.getElementById("demo").innerHTML = "❌ " + err.message;
+        }
+
+
+        try {
+            s = ghj;
+        } catch (err) {
+            document.getElementById("demo1").innerHTML = "❌ " + err.message;
+        }
+
+
+        try {
+            var z = 56;
+            var v = 10;
+            var s = 6;
+            document.getElementById("demo2").innerHTML = "✅ " + (z + v - s);
+        } catch (err) {
+            document.getElementById("demo2").innerHTML = "❌ " + err.message;
+        }
+
+
+        try {
+            function generateNumbers() {
+                let count = 0;
+                let result = "";
+
+                while (count < 10) {
+                    let num = Math.floor(Math.random() * 11);
+                    result += num + " ";
+                    count++;
+                }
+
+                document.getElementById("demo3").innerHTML = "✅ " + result;
+            }
+
+            generateNumbers();
+
+        } catch (err) {
+            document.getElementById("demo3").innerHTML = "❌ " + err.message;
+        }
+
+
+        try {
+            document.getElementById("doesNotExist").innerHTML = "This won't work";
+        } catch (err) {
+            document.getElementById("demo45").innerHTML = "❌ " + err.message;
+        }
+
+
+        try {
+            var num = 42;
+            num();
+        } catch (err) {
+            document.getElementById("demo6").innerHTML = "❌ " + err.name + ": " + err.message;
+        }
+
+    </script>
+</body>
+
+</html>
