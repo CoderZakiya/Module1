@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Event Dashboard</title>
+
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --accent: #f0b429;
+            --accent2: #e05c2a;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --green: #3fb950;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            padding: 35px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(240, 180, 41, 0.15) 0%,
+                    transparent 70%);
+        }
+
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+
+            background: linear-gradient(135deg,
+                    var(--accent),
+                    var(--accent2));
+
+            background-clip: text;
+            -webkit-background-clip: text;
+
+            color: transparent;
+        }
+
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg,
+                    var(--accent),
+                    var(--accent2));
+            color: #0d1117;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(240, 180, 41, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(240, 180, 41, 0.4);
+        }
+
+
+        .box {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-top: 18px;
+            transition: 0.3s;
+        }
+
+
+        #statusBox {
+            color: var(--accent);
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        #detailsBox {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+
+        #jsonBox {
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            color: #8b949e;
+        }
+
+        /* ── Spinner ── */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .www {
+            color: #78879c;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: medium;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="card">
+        <kbd>
+            <h1 class="www">lalbagh Government Model School and College</h1>
+        </kbd>
+        <h1>School Event Dashboard</h1>
+
+
+        <button onclick="showSchoolEvent()">
+            Load Event Details
+        </button>
+
+
+        <div id="statusBox" class="box">
+            <span id="statusText">
+                Click the button to load event details...
+            </span>
+        </div>
+
+
+        <div id="detailsBox" class="box">
+            Event details will appear here...
+        </div>
+
+
+        <div id="jsonBox" class="box">
+            <h2>JSON parsedData</h2>
+            JSON text output will appear here...
+        </div>
+
+    </div>
+
+    <script>
+
+        // Step 3: Callback Function
+        function showLoadingMessage(message) {
+
+            document.getElementById("statusBox").innerHTML =
+                '<span class="spinner"></span>' +
+                '<span>' + message + '</span>';
+        }
+
+        // Step 4: Promise Function
+        function fetchSchoolEventData(callback) {
+
+            // Show loading message
+            callback("Loading school event data... Please wait.");
+
+            // Return Promise
+            return new Promise((resolve, reject) => {
+
+                // Step 5: Simulate asynchronous loading
+                setTimeout(() => {
+
+                    // Step 6: JSON-style object
+                    const schoolEvent = {
+                        eventName: "Annual Science Fair",
+                        date: "15 June 2026",
+                        time: "10:00 AM",
+                        venue: "School Auditorium",
+                        coordinator: "Mr. Rahman",
+                        participants: 250,
+                        isRegistrationOpen: true
+                    };
+
+                    resolve(schoolEvent);
+
+                }, 2000);
+
+            });
+        }
+
+        // Step 7: Use async/await
+        async function showSchoolEvent() {
+
+            // Wait for event data
+            const eventData =
+                await fetchSchoolEventData(showLoadingMessage);
+
+            // Step 8: Convert and Parse JSON
+            const jsonText =
+                JSON.stringify(eventData, null, 4);
+
+            const parsedData =
+                JSON.parse(jsonText);
+
+            // Step 9: Display Event Details
+            let eventMessage =
+                "<strong>Event Name:</strong> " +
+                parsedData.eventName + "<br><br>" +
+
+                "<strong>Date:</strong> " +
+                parsedData.date + "<br><br>" +
+
+                "<strong>Time:</strong> " +
+                parsedData.time + "<br><br>" +
+
+                "<strong>Venue:</strong> " +
+                parsedData.venue + "<br><br>" +
+
+                "<strong>Coordinator:</strong> " +
+                parsedData.coordinator + "<br><br>" +
+
+                "<strong>Participants:</strong> " +
+                parsedData.participants + "<br><br>" +
+
+                "<strong>Registration Open:</strong> " +
+                parsedData.isRegistrationOpen;
+
+            // Show event details
+            const detailsBox =
+                document.getElementById("detailsBox");
+
+            detailsBox.innerHTML = eventMessage;
+
+            // Show JSON text
+            const jsonBox =
+                document.getElementById("jsonBox");
+
+            jsonBox.textContent = jsonText;
+
+            // Add fade animation
+            detailsBox.classList.add("fade-in");
+            jsonBox.classList.add("fade-in");
+
+            // Update status
+            document.getElementById("statusBox").innerHTML =
+                "✔ School event data loaded successfully!";
+
+            document.getElementById("statusBox").style.color =
+                "#3fb950";
+        }
+
+    </script>
+
+</body>
+
+</html>
