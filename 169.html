@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>School Event Registration</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            background: #0f0c29;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 60%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 15%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 75% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 40%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 20% 90%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 65% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 48px 40px 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #f9a825, #ff6f00);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        #timer {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label.field-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s, background 0.2s;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #f9a825;
+            background: rgba(249, 168, 37, 0.07);
+        }
+
+        select option {
+            background: #302b63;
+            color: #fff;
+        }
+
+        .field-msg {
+            font-size: 12px;
+            margin-top: 5px;
+            min-height: 16px;
+        }
+
+        button#registerBtn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px;
+            background: linear-gradient(90deg, #f9a825, #ff6f00);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        button#registerBtn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        button#registerBtn:active {
+            transform: translateY(0);
+        }
+
+
+        #pass-wrapper {
+            display: none;
+            margin-top: 28px;
+            animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pass-card {
+            background: #fff;
+            border: 3px solid #3b82f6;
+            border-radius: 18px;
+            box-shadow: 0 0 24px #93c5fd88;
+            overflow: hidden;
+        }
+
+        .pass-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+            padding: 18px 22px 14px;
+            text-align: left;
+        }
+
+        .pass-header .pass-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .pass-header .pass-sub {
+            font-size: 11px;
+            color: #93c5fd;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .pass-body {
+            padding: 20px 22px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 18px;
+        }
+
+        .pass-field {
+            text-align: left;
+        }
+
+        .pass-field .pf-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 3px;
+        }
+
+        .pass-field .pf-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .pass-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .pass-footer {
+            margin: 0 22px 20px;
+            background: #eff6ff;
+            border: 2px dashed #93c5fd;
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pass-footer .pf-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #1d4ed8;
+            margin-bottom: 4px;
+        }
+
+        .pass-footer .pass-id {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #1d4ed8;
+            letter-spacing: 3px;
+        }
+
+        .pass-footer .pass-badge-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .pass-status {
+            background: #dcfce7;
+            color: #166534;
+            border-top: 2px solid #22c55e;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* error box */
+        #error-box {
+            display: none;
+            margin-top: 20px;
+            padding: 14px 18px;
+            background: rgba(239, 83, 80, 0.15);
+            border: 1.5px solid rgba(239, 83, 80, 0.45);
+            border-radius: 12px;
+            color: #ef9a9a;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <span class="badge">🎉 School Events 2026</span>
+        <h1>Event Registration</h1>
+        <p class="subtitle">Fill in your details below to register and receive your event pass.</p>
+        <p id="timer"></p>
+
+        <div class="field">
+            <label class="field-label" for="name">Your Name</label>
+            <input type="text" id="name" placeholder="e.g. Zakiya Rahman">
+            <p class="field-msg" id="msg-name"></p>
+        </div>
+
+        <div class="field">
+            <label class="field-label" for="fathername">Father's Name</label>
+            <input type="text" id="fathername" placeholder="e.g. Abdul Rahman">
+            <p class="field-msg" id="msg-fathername"></p>
+        </div>
+
+        <div class="field">
+            <label class="field-label" for="mothername">Mother's Name</label>
+            <input type="text" id="mothername" placeholder="e.g. Nasrin Begum">
+            <p class="field-msg" id="msg-mothername"></p>
+        </div>
+
+        <div class="field">
+            <label class="field-label" for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g. zakiya@school.edu">
+            <p class="field-msg" id="msg-email"></p>
+        </div>
+
+        <div class="field">
+            <label class="field-label" for="age">Age</label>
+            <input type="number" id="age" placeholder="e.g. 16" min="5" max="30">
+            <p class="field-msg" id="msg-age"></p>
+        </div>
+
+        <div class="field">
+            <label class="field-label" for="eventName">Choose Event</label>
+            <select id="eventName">
+
+                <option value="Science Fair">Science Fair</option>
+                <option value="Coding Competition">Coding competition</option>
+                <option value="Art Competition">Art Competition</option>
+                <option value="poetry Competition">poetry Competition</option>
+
+                <option value="Sports Day">Sports Day</option>
+            </select>
+            <p class="field-msg" id="msg-event"></p>
+        </div>
+
+        <button id="registerBtn" type="button" onclick="registerEvent()">Register Now →</button>
+
+        <div id="error-box"></div>
+
+
+        <div id="pass-wrapper">
+            <div class="pass-card">
+                <div class="pass-header">
+                    <div class="pass-title">🎫 Event Pass</div>
+                    <div class="pass-sub">School Events 2026 — Official Entry</div>
+                </div>
+
+                <div class="pass-body">
+                    <div class="pass-field">
+                        <div class="pf-label">Student Name</div>
+                        <div class="pf-value" id="out-name">—</div>
+                    </div>
+                    <div class="pass-field">
+                        <div class="pf-label">Age</div>
+                        <div class="pf-value" id="out-age">—</div>
+                    </div>
+                    <div class="pass-field">
+                        <div class="pf-label">Father's Name</div>
+                        <div class="pf-value" id="out-father">—</div>
+                    </div>
+                    <div class="pass-field">
+                        <div class="pf-label">Mother's Name</div>
+                        <div class="pf-value" id="out-mother">—</div>
+                    </div>
+                    <div class="pass-field full">
+                        <div class="pf-label">Email Address</div>
+                        <div class="pf-value" id="out-email">—</div>
+                    </div>
+                    <div class="pass-field full">
+                        <div class="pf-label">Registered Event</div>
+                        <div class="pf-value" id="out-event">—</div>
+                    </div>
+                </div>
+
+                <div class="pass-footer">
+                    <div>
+                        <div class="pf-label">Event Pass ID</div>
+                        <div class="pass-id" id="out-pass">EVT-0000</div>
+                    </div>
+                    <div class="pass-badge-icon">🏅</div>
+                </div>
+
+                <div class="pass-status">✅ Registration Confirmed</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var seconds = 0;
+        setInterval(function () {
+            seconds++;
+            document.getElementById("timer").textContent =
+                "⏱ You've been here for " + seconds + " second" + (seconds === 1 ? "" : "s");
+        }, 1000);
+
+        function setMsg(id, text, isGood) {
+            var el = document.getElementById(id);
+            el.textContent = text;
+            el.style.color = isGood ? "#81c784" : "#ef9a9a";
+        }
+
+        function registerEvent() {
+            var name = document.getElementById("name").value.trim();
+            var fathername = document.getElementById("fathername").value.trim();
+            var mothername = document.getElementById("mothername").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var age = document.getElementById("age").value.trim();
+            var eventName = document.getElementById("eventName").value;
+
+            var ok = true;
+
+            if (name === "") {
+                setMsg("msg-name", "Please enter your name!", false); ok = false;
+            } else { setMsg("msg-name", "✓ Name saved!", true); }
+
+            if (fathername === "") {
+                setMsg("msg-fathername", "Please enter your father's name!", false); ok = false;
+            } else { setMsg("msg-fathername", "✓ Saved!", true); }
+
+            if (mothername === "") {
+                setMsg("msg-mothername", "Please enter your mother's name!", false); ok = false;
+            } else { setMsg("msg-mothername", "✓ Saved!", true); }
+
+            if (email === "") {
+                setMsg("msg-email", "Please enter your email!", false); ok = false;
+            } else { setMsg("msg-email", "✓ Email saved!", true); }
+
+            if (age === "") {
+                setMsg("msg-age", "Please enter your age!", false); ok = false;
+            } else { setMsg("msg-age", "✓ Age saved!", true); }
+
+            if (eventName === "") {
+                setMsg("msg-event", "Please select an event!", false); ok = false;
+            } else { setMsg("msg-event", "✓ Event selected!", true); }
+
+            var errBox = document.getElementById("error-box");
+            var passWrapper = document.getElementById("pass-wrapper");
+
+            if (!ok) {
+                errBox.style.display = "block";
+                errBox.textContent = "⚠ Please fill in all fields correctly before registering.";
+                passWrapper.style.display = "none";
+                return;
+            }
+
+            errBox.style.display = "none";
+            passWrapper.style.display = "none";
+
+            setTimeout(function () {
+                var passNumber = "EVT-" + (Math.floor(Math.random() * 9000) + 1000);
+
+                document.getElementById("out-name").textContent = name;
+                document.getElementById("out-father").textContent = fathername;
+                document.getElementById("out-mother").textContent = mothername;
+                document.getElementById("out-email").textContent = email;
+                document.getElementById("out-age").textContent = age;
+                document.getElementById("out-event").textContent = eventName;
+                document.getElementById("out-pass").textContent = passNumber;
+
+                passWrapper.style.display = "block";
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
