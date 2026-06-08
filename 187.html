@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Red Flame — Restaurant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --r1: #b91c1c;
+            --r2: #dc2626;
+            --r3: #ef4444;
+            --amber: #f59e0b;
+            --cream: #fef9f0;
+            --parchment: #fdf0dc;
+            --char: #1c0a00;
+            --ink: #3b1a0e;
+            --muted: #7c4a2d;
+            --white: #ffffff;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden
+        }
+
+
+
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            height: 70px;
+            background: rgba(28, 10, 0, 0.96);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--amber);
+            letter-spacing: 1px;
+        }
+
+        .nav-logo em {
+            color: var(--r3);
+            font-style: italic
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.2rem;
+            align-items: center
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgba(255, 240, 220, .75);
+            font-size: .82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color .25s;
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--amber);
+            transition: width .3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--amber)
+        }
+
+        nav ul li a:hover::after {
+            width: 100%
+        }
+
+        .nav-order a {
+            background: var(--r1) !important;
+            color: #fff !important;
+            padding: .45rem 1.3rem !important;
+            border-radius: 2px;
+            letter-spacing: 1.5px;
+            transition: background .25s !important;
+        }
+
+        .nav-order a:hover {
+            background: var(--r2) !important
+        }
+
+        .nav-order a::after {
+            display: none !important
+        }
+
+
+        #home {
+            position: relative;
+            height: 100vh;
+            min-height: 640px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=85') center/cover no-repeat;
+            transform: scale(1.08);
+            animation: zoomDrift 22s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomDrift {
+            0% {
+                transform: scale(1.08) translateX(0)
+            }
+
+            100% {
+                transform: scale(1.14) translateX(-1%)
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(175deg, rgba(185, 28, 28, .72) 0%, rgba(28, 10, 0, .85) 55%, rgba(28, 10, 0, .92) 100%);
+        }
+
+
+        .craving-wrap {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .cword {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: rgba(255, 255, 255, .12);
+            font-weight: 700;
+            animation: rise linear infinite;
+            white-space: nowrap;
+        }
+
+        .cword:nth-child(1) {
+            font-size: 4.5rem;
+            left: 3%;
+            animation-duration: 12s;
+            animation-delay: 0s
+        }
+
+        .cword:nth-child(2) {
+            font-size: 3rem;
+            left: 18%;
+            animation-duration: 16s;
+            animation-delay: 3s
+        }
+
+        .cword:nth-child(3) {
+            font-size: 5.5rem;
+            left: 38%;
+            animation-duration: 10s;
+            animation-delay: 1.5s
+        }
+
+        .cword:nth-child(4) {
+            font-size: 3.8rem;
+            left: 60%;
+            animation-duration: 14s;
+            animation-delay: 5s
+        }
+
+        .cword:nth-child(5) {
+            font-size: 2.8rem;
+            left: 78%;
+            animation-duration: 18s;
+            animation-delay: 2s
+        }
+
+        .cword:nth-child(6) {
+            font-size: 4rem;
+            left: 50%;
+            animation-duration: 13s;
+            animation-delay: 7s
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(105vh) rotate(-6deg);
+                opacity: 0
+            }
+
+            8% {
+                opacity: 1
+            }
+
+            88% {
+                opacity: .7
+            }
+
+            100% {
+                transform: translateY(-12vh) rotate(6deg);
+                opacity: 0
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: .72rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, .4);
+            padding: .35rem 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 1.6rem;
+            animation: fadeSlide .9s ease both;
+        }
+
+        .hero-inner h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.2rem, 9vw, 7.5rem);
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -1px;
+            animation: fadeSlide .9s .2s ease both;
+        }
+
+        .hero-inner h1 em {
+            color: var(--amber);
+            display: block
+        }
+
+        .hero-sub {
+            margin-top: 1.4rem;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 240, 220, .7);
+            letter-spacing: 1.5px;
+            animation: fadeSlide .9s .4s ease both;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.8rem;
+            animation: fadeSlide .9s .6s ease both;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--r1);
+            color: #fff;
+            padding: .85rem 2.5rem;
+            font-size: .85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: background .3s, transform .2s;
+            box-shadow: 0 8px 28px rgba(185, 28, 28, .45);
+        }
+
+        .btn-primary:hover {
+            background: var(--r2);
+            transform: translateY(-2px)
+        }
+
+        .btn-ghost {
+            display: inline-block;
+            text-decoration: none;
+            border: 1.5px solid rgba(255, 240, 220, .4);
+            color: rgba(255, 240, 220, .85);
+            padding: .85rem 2.5rem;
+            font-size: .85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-radius: 2px;
+            transition: all .3s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+            color: var(--amber)
+        }
+
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .4rem;
+            opacity: .6;
+            animation: bob 2s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0)
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(6px)
+            }
+        }
+
+        .scroll-hint span {
+            font-size: .65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 240, 220, .6)
+        }
+
+        .scroll-arrow {
+            width: 18px;
+            height: 18px;
+            border-right: 1.5px solid rgba(255, 240, 220, .5);
+            border-bottom: 1.5px solid rgba(255, 240, 220, .5);
+            transform: rotate(45deg)
+        }
+
+
+        .photo-band {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .pb-cell {
+            position: relative;
+            overflow: hidden
+        }
+
+        .pb-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(.78)saturate(1.15);
+            transition: transform .55s ease, filter .4s;
+        }
+
+        .pb-cell:hover img {
+            transform: scale(1.1);
+            filter: brightness(1)saturate(1.3)
+        }
+
+        .pb-cell .word {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .6);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .35s;
+        }
+
+        .pb-cell:hover .word {
+            opacity: 1
+        }
+
+        .pb-cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(185, 28, 28, .4)100%);
+            pointer-events: none;
+        }
+
+
+        .section-wrap {
+            padding: 100px 7%
+        }
+
+        .label {
+            font-size: .7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--r2);
+            font-weight: 600;
+            margin-bottom: .7rem;
+            display: block;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            line-height: 1.1;
+            color: var(--char);
+            margin-bottom: .8rem;
+        }
+
+        .title em {
+            color: var(--r1);
+            font-style: italic
+        }
+
+        .rule {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--r1), var(--amber));
+            margin-bottom: 2rem;
+            border-radius: 1px;
+        }
+
+        #menu {
+            background: var(--cream)
+        }
+
+        .menu-intro {
+            max-width: 560px;
+            color: var(--muted);
+            line-height: 1.75;
+            font-size: .97rem;
+            margin-bottom: 3rem
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(185, 28, 28, .07);
+            transition: transform .35s, box-shadow .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 16px 40px rgba(185, 28, 28, .15)
+        }
+
+        .card-img {
+            position: relative;
+            overflow: hidden;
+            height: 190px
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.07)
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--r1);
+            color: #fff;
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: .28rem .75rem;
+            border-radius: 2px;
+        }
+
+        .card-body {
+            padding: 1.3rem 1.5rem
+        }
+
+        .card-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--char);
+            margin-bottom: .5rem;
+            font-weight: 700;
+        }
+
+        .card-body p {
+            font-size: .88rem;
+            color: #7a4c2c;
+            line-height: 1.65
+        }
+
+        .card-extra {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #f0dece;
+            animation: pop .3s ease;
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: .8rem
+        }
+
+        .price-tag {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--r1);
+        }
+
+        .rating {
+            color: var(--amber);
+            font-size: .9rem;
+            letter-spacing: 1px
+        }
+
+        .meta-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem
+        }
+
+        .chip {
+            background: var(--parchment);
+            color: var(--ink);
+            font-size: .72rem;
+            font-weight: 500;
+            letter-spacing: .5px;
+            padding: .25rem .7rem;
+            border-radius: 20px;
+        }
+
+        .see-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            margin-top: 1.1rem;
+            background: none;
+            border: 1.5px solid var(--r1);
+            color: var(--r1);
+            padding: .42rem 1.1rem;
+            border-radius: 2px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .25s;
+        }
+
+        .see-btn:hover,
+        .see-btn.open {
+            background: var(--r1);
+            color: #fff
+        }
+
+        .see-btn svg {
+            transition: transform .3s
+        }
+
+        .see-btn.open svg {
+            transform: rotate(180deg)
+        }
+
+
+        #order {
+            background: linear-gradient(140deg, #7f0f0f 0%, #b91c1c 40%, #1c0a00 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        #order .label {
+            color: var(--amber)
+        }
+
+        #order .title {
+            color: #fff
+        }
+
+        #order .title em {
+            color: var(--amber)
+        }
+
+        .order-desc {
+            max-width: 520px;
+            margin: .5rem auto 2.8rem;
+            opacity: .8;
+            font-size: 1rem;
+            line-height: 1.7
+        }
+
+        .order-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .order-form input,
+        .order-form select {
+            padding: .9rem 1.2rem;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 240, 220, .25);
+            color: #fff;
+            border-radius: 3px;
+            font-size: .93rem;
+            font-family: 'DM Sans', sans-serif;
+            outline: none;
+            transition: border .25s;
+        }
+
+        .order-form input::placeholder {
+            color: rgba(255, 240, 220, .5)
+        }
+
+        .order-form input:focus,
+        .order-form select:focus {
+            border-color: var(--amber)
+        }
+
+        .order-form select option {
+            background: #7f0f0f
+        }
+
+        .order-form .full {
+            grid-column: 1/-1
+        }
+
+        .confirm-btn {
+            grid-column: 1/-1;
+            padding: 1.05rem;
+            background: var(--amber);
+            color: var(--char);
+            font-weight: 700;
+            font-size: .95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: filter .25s, transform .2s;
+        }
+
+        .confirm-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px)
+        }
+
+        .order-ok {
+            display: none;
+            margin-top: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--amber)
+        }
+
+
+        #contact {
+            background: var(--parchment)
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 5rem;
+            margin-top: 3rem
+        }
+
+        .c-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            color: var(--char);
+            margin-bottom: .6rem
+        }
+
+        .c-info p {
+            font-size: .93rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: .35rem
+        }
+
+        .c-info strong {
+            color: var(--r1)
+        }
+
+        .c-form input,
+        .c-form textarea {
+            width: 100%;
+            padding: .88rem 1.1rem;
+            margin-bottom: 1rem;
+            border: 1.5px solid #e5cbb0;
+            border-radius: 3px;
+            font-size: .93rem;
+            color: var(--char);
+            font-family: 'DM Sans', sans-serif;
+            outline: none;
+            transition: border .25s;
+            background: #fff;
+        }
+
+        .c-form input:focus,
+        .c-form textarea:focus {
+            border-color: var(--r1)
+        }
+
+        .c-form textarea {
+            resize: vertical;
+            min-height: 115px
+        }
+
+        .send-btn {
+            background: var(--r1);
+            color: #fff;
+            padding: .9rem 2.2rem;
+            border: none;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: .88rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background .25s;
+        }
+
+        .send-btn:hover {
+            background: var(--r2)
+        }
+
+        .send-ok {
+            display: none;
+            margin-top: .8rem;
+            color: var(--r1);
+            font-style: italic
+        }
+
+
+        #feedback {
+            background: #fff
+        }
+
+        .fb-inner {
+            max-width: 600px
+        }
+
+        .stars {
+            display: flex;
+            gap: .6rem;
+            margin: 1.5rem 0
+        }
+
+        .star {
+            font-size: 2.2rem;
+            cursor: pointer;
+            color: #e2d3c5;
+            transition: color .2s, transform .25s;
+        }
+
+        .star.lit {
+            color: var(--amber);
+            transform: scale(1.2)
+        }
+
+        #fb-label {
+            font-size: .9rem;
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+            min-height: 1.2em
+        }
+
+        .fb-inner textarea {
+            width: 100%;
+            padding: .9rem 1.1rem;
+            border: 1.5px solid #e5cbb0;
+            border-radius: 3px;
+            font-size: .93rem;
+            color: var(--char);
+            font-family: 'DM Sans', sans-serif;
+            resize: vertical;
+            min-height: 110px;
+            outline: none;
+            transition: border .25s;
+        }
+
+        .fb-inner textarea:focus {
+            border-color: var(--r1)
+        }
+
+        .fb-btn {
+            margin-top: 1rem;
+            background: var(--char);
+            color: #fff;
+            padding: .85rem 2.2rem;
+            border: none;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: .88rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background .25s;
+        }
+
+        .fb-btn:hover {
+            background: var(--r1)
+        }
+
+        .fb-ok {
+            display: none;
+            margin-top: 1rem;
+            color: var(--r1);
+            font-style: italic
+        }
+
+
+        footer {
+            background: var(--char);
+            color: rgba(255, 240, 220, .4);
+            text-align: center;
+            padding: 2.8rem 2rem;
+            font-size: .83rem;
+            letter-spacing: 1px;
+        }
+
+        footer strong {
+            color: var(--amber)
+        }
+
+        @media(max-width:820px) {
+            nav ul {
+                gap: 1.2rem
+            }
+
+            nav ul li a {
+                font-size: .75rem
+            }
+
+            .photo-band {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .photo-band .pb-cell:nth-child(n+4) {
+                display: none
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem
+            }
+
+            .order-form {
+                grid-template-columns: 1fr
+            }
+
+            .order-form .full {
+                grid-column: 1
+            }
+
+            .confirm-btn {
+                grid-column: 1
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <nav>
+        <div class="nav-logo">The Red <em>Flame</em></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li class="nav-order"><a href="#order">Place Order</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+        </ul>
+    </nav>
+
+
+    <section id="home">
+        <div class="hero-img"></div>
+        <div class="hero-overlay"></div>
+        <div class="craving-wrap">
+            <span class="cword">Delicious</span>
+            <span class="cword">Yummy</span>
+            <span class="cword">Honest</span>
+            <span class="cword">Soulful</span>
+            <span class="cword">Fresh</span>
+            <span class="cword">Craving</span>
+        </div>
+        <div class="hero-inner">
+            <span class="hero-tag">✦ Fine Dining Since 2014 ✦</span>
+            <h1>Born from Fire<em>Served with Soul</em></h1>
+            <p class="hero-sub">Hand-crafted recipes · Honest ingredients · Unforgettable flavours</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn-primary">Explore Menu</a>
+                <a href="#order" class="btn-ghost">Reserve a Table</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+
+    <div class="photo-band">
+        <div class="pb-cell">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="food" />
+            <span class="word">Delicious</span>
+        </div>
+        <div class="pb-cell">
+            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3b28?w=500&q=80" alt="food" />
+            <span class="word">Yummy</span>
+        </div>
+        <div class="pb-cell">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="food" />
+            <span class="word">Honest</span>
+        </div>
+        <div class="pb-cell">
+            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=500&q=80" alt="food" />
+            <span class="word">Soulful</span>
+        </div>
+        <div class="pb-cell">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="food" />
+            <span class="word">Fresh</span>
+        </div>
+    </div>
+
+
+    <section id="menu" class="section-wrap">
+        <span class="label">Our Specialities</span>
+        <h2 class="title">Every Dish is a <em>Love Letter</em></h2>
+        <div class="rule"></div>
+        <p class="menu-intro">
+            Each plate leaves our kitchen with intention — slow sauces, hand-ground spices,
+            and produce sourced fresh each morning. Hover to see the passion, click
+            <em>See More</em> to reveal full details &amp; pricing.
+        </p>
+        <div class="food-grid" id="foodGrid"></div>
+    </section>
+
+    <section id="order" class="section-wrap">
+        <span class="label">Reserve Now</span>
+        <h2 class="title">Place Your <em>Order</em></h2>
+        <div class="rule" style="margin:0 auto 0;"></div>
+        <p class="order-desc">Tell us what you're craving. We'll have it ready — dine in or takeaway.</p>
+        <div class="order-form">
+            <input type="text" id="oName" placeholder="Full Name" />
+            <input type="tel" id="oPhone" placeholder="Phone Number" />
+            <select id="oDish" class="full">
+                <option value="">— Select a Dish —</option>
+                <option>Truffle Porcini Risotto</option>
+                <option>Saffron Butter Chicken</option>
+                <option>Grilled Atlantic Salmon</option>
+                <option>Slow-Roasted Lamb Shank</option>
+                <option>Tiger Prawn Coconut Curry</option>
+                <option>Charred Eggplant &amp; Mozzarella</option>
+                <option>Prime Beef Tenderloin</option>
+                <option>Honey Glazed Duck Breast</option>
+                <option>Roasted Tomato Bisque</option>
+                <option>Dark Chocolate Fondant</option>
+                <option>Mango Lassi Cheesecake</option>
+                <option>Spiced Lamb Biryani</option>
+            </select>
+            <input type="text" id="oDate" placeholder="Preferred Date" class="full" />
+            <input type="text" id="oTime" placeholder="Preferred Time (e.g. 7:30 PM)" />
+            <select id="oGuests">
+                <option value="">Guests</option>
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3–4 Guests</option>
+                <option>5–6 Guests</option>
+                <option>7+ Guests</option>
+            </select>
+            <button class="confirm-btn" onclick="placeOrder()">Confirm Reservation</button>
+        </div>
+        <p class="order-ok" id="orderOk">🎉 Reservation confirmed! We look forward to seeing you.</p>
+    </section>
+
+
+    <section id="contact" class="section-wrap">
+        <span class="label">Find Us</span>
+        <h2 class="title">Come <em>Visit Us</em></h2>
+        <div class="rule"></div>
+        <div class="contact-layout">
+            <div class="c-info">
+                <h3>📍 Address</h3>
+                <p><strong>42 Ember Lane,</strong> Spice Quarter, Dhaka 1200</p>
+                <br />
+                <h3>📞 Contact</h3>
+                <p>Phone: <strong>+880 1700-000000</strong></p>
+                <p>Email: <strong>hello@emberandspice.com</strong></p>
+                <br />
+                <h3>🕐 Opening Hours</h3>
+                <p>Mon – Fri: <strong>11:00 AM – 11:00 PM</strong></p>
+                <p>Sat – Sun: <strong>10:00 AM – 12:00 AM</strong></p>
+                <br />
+                <h3>🅿️ Parking</h3>
+                <p>Free valet parking after <strong>6:00 PM</strong> daily.</p>
+            </div>
+            <div class="c-form">
+                <input type="text" id="cName" placeholder="Your Name" />
+                <input type="email" id="cEmail" placeholder="Email Address" />
+                <textarea id="cMsg" placeholder="Your message or special request..."></textarea>
+                <button class="send-btn" onclick="sendMsg()">Send Message</button>
+                <p class="send-ok" id="sendOk">✓ Message received! We'll reply within 24 hours.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="feedback" class="section-wrap">
+        <span class="label">Your Voice</span>
+        <h2 class="title">Share Your <em>Experience</em></h2>
+        <div class="rule"></div>
+        <div class="fb-inner">
+            <p style="color:var(--muted);font-size:.95rem">How did we do? Your feedback shapes every plate we serve.</p>
+            <div class="stars" id="stars">
+                <span class="star" onclick="rate(1)">★</span>
+                <span class="star" onclick="rate(2)">★</span>
+                <span class="star" onclick="rate(3)">★</span>
+                <span class="star" onclick="rate(4)">★</span>
+                <span class="star" onclick="rate(5)">★</span>
+            </div>
+            <p id="fb-label"></p>
+            <textarea id="fbText" placeholder="Tell us what you loved, or how we can do better..."></textarea>
+            <button class="fb-btn" onclick="submitFb()">Submit Feedback</button>
+            <p class="fb-ok" id="fbOk">💬 Thank you — your feedback means the world to us!</p>
+        </div>
+    </section>
+
+
+    <script>
+
+
+
+        const foods = [
+
+            { name: 'Saffron Butter Chicken', desc: 'Chicken marinated 18 hours in saffron and spiced yoghurt, slow-braised in a silky tomato-cream sauce with housemade butter naan.', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=75', price: '৳ 420', cat: 'Non-Veg', time: '30 min', cal: '620 kcal', rating: '★★★★★' },
+            { name: 'Grilled Atlantic Salmon', desc: 'Pan-seared skin-on fillet with lemon-caper beurre blanc, blanched asparagus, and herb-crusted fingerling potatoes.', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&q=75', price: '৳ 750', cat: 'Seafood', time: '20 min', cal: '540 kcal', rating: '★★★★☆' },
+            { name: 'Slow-Roasted Lamb Shank', desc: '8-hour braised lamb shank in red wine and rosemary reduction, resting on silky roasted garlic mash and charred broccolini.', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=75', price: '৳ 880', cat: 'Non-Veg', time: '40 min', cal: '780 kcal', rating: '★★★★★' },
+            { name: 'Tiger Prawn Coconut Curry', desc: 'Jumbo tiger prawns simmered in house-ground coconut masala with fresh curry leaves, served on fragrant turmeric basmati.', img: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=500&q=75', price: '৳ 620', cat: 'Seafood', time: '25 min', cal: '590 kcal', rating: '★★★★☆' },
+            { name: 'Charred Eggplant Stack', desc: 'Smoky oven-roasted eggplant layered with buffalo mozzarella, sun-dried tomato pesto, and a 12-year aged balsamic glaze.', img: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=500&q=75', price: '৳ 340', cat: 'Vegetarian', time: '18 min', cal: '390 kcal', rating: '★★★★☆' },
+            { name: 'Prime Beef Tenderloin', desc: '200g grass-fed centre-cut tenderloin cooked to your exact preference, with truffle pommes frites and a classic green peppercorn jus.', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=75', price: '৳ 1,100', cat: 'Non-Veg', time: '20 min', cal: '860 kcal', rating: '★★★★★' },
+            { name: 'Honey Glazed Duck Breast', desc: 'Crispy-skin duck breast lacquered in orange-honey glaze, served with braised red cabbage, wild rice pilaf, and port jus.', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=75', price: '৳ 950', cat: 'Non-Veg', time: '35 min', cal: '710 kcal', rating: '★★★★★' },
+            { name: 'Roasted Tomato Bisque', desc: 'Vine tomatoes slow-roasted until caramelised, blended velvety smooth with fresh basil oil, finished with crispy sourdough croutons.', img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=75', price: '৳ 260', cat: 'Vegetarian', time: '15 min', cal: '290 kcal', rating: '★★★★☆' },
+            { name: 'Dark Chocolate Fondant', desc: 'Warm Valrhona chocolate fondant with a lava centre, served alongside house-churned vanilla bean ice cream and fresh raspberry coulis.', img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&q=75', price: '৳ 380', cat: 'Dessert', time: '14 min', cal: '520 kcal', rating: '★★★★★' },
+            { name: 'Mango Lassi Cheesecake', desc: 'No-bake cardamom-spiced digestive base, creamy mango lassi filling, topped with fresh Alphonso mango compote and pistachio dust.', img: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=75', price: '৳ 310', cat: 'Dessert', time: '10 min', cal: '440 kcal', rating: '★★★★☆' },
+            { name: 'Spiced Lamb Biryani', desc: 'Aged basmati layered with 3-hour spiced lamb, crispy fried onions, fresh mint, and a touch of rose water — sealed and dum-cooked.', img: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=75', price: '৳ 490', cat: 'Non-Veg', time: '30 min', cal: '720 kcal', rating: '★★★★★' },
+            { name: 'Mushroom Wellington', desc: 'Golden puff pastry encasing a medley of wild mushrooms, spinach, and walnut duxelle, sliced tableside with a red wine reduction.', img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&q=75', price: '৳ 680', cat: 'Vegetarian', time: '28 min', cal: '560 kcal', rating: '★★★★☆' },
+            { name: 'Lobster Bisque', desc: 'Classic Breton-style bisque made from whole lobster shells, cream, and cognac, topped with a plump claw crostini.', img: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=500&q=75', price: '৳ 840', cat: 'Seafood', time: '22 min', cal: '490 kcal', rating: '★★★★★' },
+        ];
+
+        const grid = document.getElementById('foodGrid');
+        foods.forEach((f, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+    <div class="card-img">
+      <img src="${f.img}" alt="${f.name}" loading="lazy"/>
+      <span class="card-badge">${f.cat}</span>
+    </div>
+    <div class="card-body">
+      <h3>${f.name}</h3>
+      <p>${f.desc}</p>
+      <div class="card-extra" id="ex${i}">
+        <div class="price-row">
+          <span class="price-tag">${f.price}</span>
+          <span class="rating">${f.rating}</span>
+        </div>
+        <div class="meta-chips">
+          <span class="chip">⏱ ${f.time}</span>
+          <span class="chip">🔥 ${f.cal}</span>
+          <span class="chip">${f.cat}</span>
+        </div>
+      </div>
+      <button class="see-btn" id="btn${i}" onclick="toggle(${i})">
+        <span id="lbl${i}">See More</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" id="arr${i}">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>`;
+            grid.appendChild(card);
+        });
+
+        function toggle(i) {
+            const el = document.getElementById('ex' + i);
+            const btn = document.getElementById('btn' + i);
+            const lbl = document.getElementById('lbl' + i);
+            const open = el.style.display === 'block';
+            el.style.display = open ? 'none' : 'block';
+            btn.classList.toggle('open', !open);
+            lbl.textContent = open ? 'See More' : 'See Less';
+        }
+
+
+        let myRating = 0;
+        const ratingWords = ['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent ✨'];
+        function rate(n) {
+            myRating = n;
+            document.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('lit', i < n));
+            document.getElementById('fb-label').textContent = ratingWords[n];
+        }
+
+        function submitFb() {
+            if (!myRating) { alert('Please select a star rating first.'); return; }
+            document.getElementById('fbText').value = '';
+            rate(0);
+            document.getElementById('fb-label').textContent = '';
+            const ok = document.getElementById('fbOk');
+            ok.style.display = 'block';
+            setTimeout(() => ok.style.display = 'none', 5000);
+        }
+
+        function placeOrder() {
+            const n = document.getElementById('oName').value.trim();
+            const p = document.getElementById('oPhone').value.trim();
+            const d = document.getElementById('oDish').value;
+            if (!n || !p || !d) { alert('Please fill in name, phone, and select a dish.'); return; }
+            document.getElementById('orderOk').style.display = 'block';
+            ['oName', 'oPhone', 'oDate', 'oTime'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('oDish').value = '';
+            document.getElementById('oGuests').value = '';
+        }
+
+        function sendMsg() {
+            const n = document.getElementById('cName').value.trim();
+            const e = document.getElementById('cEmail').value.trim();
+            const m = document.getElementById('cMsg').value.trim();
+            if (!n || !e || !m) { alert('Please fill in all contact fields.'); return; }
+            document.getElementById('sendOk').style.display = 'block';
+            ['cName', 'cEmail', 'cMsg'].forEach(id => document.getElementById(id).value = '');
+        }
+    </script>
+</body>
+
+</html>
